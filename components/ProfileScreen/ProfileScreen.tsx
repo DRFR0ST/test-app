@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-const AppBar: () => React.ReactElement = () => {
-  return <Text>d</Text>;
+export const ProfileScreen: () => React.ReactElement = () => {
+  return <Text>Profile</Text>;
 };
 
 // const styles = StyleSheet.create({
@@ -10,5 +10,3 @@ const AppBar: () => React.ReactElement = () => {
 //     backgroundColor: 'pink',
 //   },
 // });
-
-export default AppBar;

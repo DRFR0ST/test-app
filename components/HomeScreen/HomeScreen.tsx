@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-const HomeScreen: () => React.ReactElement = () => {
+export const HomeScreen: () => React.ReactElement = () => {
   return <Text>d</Text>;
 };
 
@@ -10,5 +10,3 @@ const HomeScreen: () => React.ReactElement = () => {
 //     backgroundColor: 'pink',
 //   },
 // });
-
-export default HomeScreen;
