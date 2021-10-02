@@ -1,19 +1,21 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-// import {Button} from 'react-native';
+import {LogBox} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {HomeScreen} from './components/HomeScreen/HomeScreen';
 import {ProfileScreen} from './components/ProfileScreen/ProfileScreen';
+import {ThreeDotsScreen} from './components/ProfileScreen/ThreeDotsScreen';
 // the place for redux
 // import { Provider as StoreProvider } from 'react-redux';
 
 const Drawer = createDrawerNavigator();
 
 export const App: () => React.ReactElement = () => {
+  LogBox.ignoreLogs(['EventEmitter']); // temporary fix
+
   return (
     // the place for redux
     // <StoreProvider store={store}>
@@ -24,14 +26,7 @@ export const App: () => React.ReactElement = () => {
             name="Profile"
             component={ProfileScreen}
             options={{
-              headerRight: () => (
-                <Icon
-                  name="rocket"
-                  size={30}
-                  color="#4F8EF7"
-                  onPress={() => console.log('This is a button!')}
-                />
-              ),
+              headerRight: () => <ThreeDotsScreen />,
             }}
           />
           <Drawer.Screen name="Main offers" component={HomeScreen} />
