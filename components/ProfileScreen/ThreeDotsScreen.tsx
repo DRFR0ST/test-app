@@ -1,18 +1,17 @@
-import React from 'react';
-import {TouchableOpacity, View, StyleSheet} from 'react-native';
-import {Menu, Modal, Portal, Text} from 'react-native-paper';
+import React, {ReactElement, useState} from 'react';
+import {TouchableOpacity, StyleSheet} from 'react-native';
+import {Menu, Portal, Dialog, Button} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Entypo';
 
-export const ThreeDotsScreen: () => React.ReactElement = () => {
-  const [visible, setVisible] = React.useState(false);
-  const [isModalVisible, setIsModalVisible] = React.useState(false);
+export const ThreeDotsScreen: () => ReactElement = () => {
+  const [visible, setVisible] = useState(false);
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
 
-  const showModal = () => setIsModalVisible(true);
-  const hideModal = () => setIsModalVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
+  const showDialog = () => setIsDialogVisible(true);
+  const hideDialog = () => setIsDialogVisible(false);
   return (
     <>
       <Menu
@@ -28,25 +27,15 @@ export const ThreeDotsScreen: () => React.ReactElement = () => {
         <Menu.Item onPress={() => {}} title="Delete account" />
 
         <Portal>
-          <Modal
-            visible={isModalVisible}
-            onDismiss={hideModal}
-            contentContainerStyle={containerStyle}
-            style={styles.modal}>
-            <View style={styles.modalContent}>
-              <Text>Do you want to log out?</Text>
-              <View style={styles.modalChoice}>
-                <TouchableOpacity onPress={() => {}}>
-                  <Text>Yes</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.noBtn} onPress={() => {}}>
-                  <Text>No</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Modal>
+          <Dialog visible={isDialogVisible} onDismiss={hideDialog}>
+            <Dialog.Title>Do you want to log out?</Dialog.Title>
+            <Dialog.Actions>
+              <Button onPress={() => {}}>Yes</Button>
+              <Button onPress={() => {}}>No</Button>
+            </Dialog.Actions>
+          </Dialog>
         </Portal>
-        <Menu.Item title="Log out" onPress={showModal} />
+        <Menu.Item title="Log out" onPress={showDialog} />
       </Menu>
     </>
   );
@@ -61,8 +50,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   modalContent: {
-    height: 80,
-    width: 200,
+    height: 90,
+    width: 220,
     justifyContent: 'space-between',
   },
   modalChoice: {
