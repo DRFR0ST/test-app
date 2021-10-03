@@ -1,30 +1,46 @@
 import React, {useState} from 'react';
 import {RegisterPage} from '../screens/auth/RegisterPage';
 import {LoginPage} from '../screens/auth/LoginPage';
-
+import {HomeScreen} from '../screens/mainScreens/HomeScreen';
+import {ProfileScreen} from '../screens/mainScreens/ProfileScreen';
+import {ThreeDotsScreen} from '../screens/mainScreens/ThreeDotsScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 const MainStack = createStackNavigator();
-
+import {Provider as StoreProvider} from 'react-redux';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+const Drawer = createDrawerNavigator();
 export const useRoute = isAuth => {
-  // if (!isAuth) {
+  if (!isAuth) {
+    return (
+      <MainStack.Navigator initialRouteName="RegistrationScreen">
+        <MainStack.Screen
+          options={{headerShown: false}}
+          name="Registration"
+          component={RegisterPage}
+        />
+        <MainStack.Screen
+          options={{headerShown: false}}
+          name="Login"
+          component={LoginPage}
+        />
+        <MainStack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{title: 'Start screen'}}
+        />
+      </MainStack.Navigator>
+    );
+  }
   return (
-    <MainStack.Navigator initialRouteName="RegistrationScreen">
-      <MainStack.Screen
-        options={{headerShown: false}}
-        name="Registration"
-        component={RegisterPage}
+    <Drawer.Navigator initialRouteName="Main offers">
+      <Drawer.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          headerRight: () => <ThreeDotsScreen />,
+        }}
       />
-      <MainStack.Screen
-        options={{headerShown: false}}
-        name="Login"
-        component={LoginPage}
-      />
-      {/* <MainStack.Screen
-          name="Home"
-          component={Home}
-          options={{ title: "Start screen" }}
-        /> */}
-    </MainStack.Navigator>
+      <Drawer.Screen name="Main offers" component={HomeScreen} />
+    </Drawer.Navigator>
   );
-  // }
 };
