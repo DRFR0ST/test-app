@@ -30,7 +30,7 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-export const LoginPage = ({navigation}) => {
+export const LoginPage = ({navigation}: any) => {
   const image = {
     uri: 'https://funnyness.com/sites/default/files/images/in/01-2016/1-funny-and-stylish-monkey-picture.jpg',
   };
@@ -67,8 +67,7 @@ export const LoginPage = ({navigation}) => {
               </LinearGradient>
               <TouchableOpacity
                 style={styles.btn}
-                onPress={() => navigation.navigate('Registration')}
-              >
+                onPress={() => navigation.navigate('Registration')}>
                 <Text>Register</Text>
               </TouchableOpacity>
             </View>

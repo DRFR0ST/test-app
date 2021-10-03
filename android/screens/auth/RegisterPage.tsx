@@ -37,7 +37,7 @@ const validationSchema = Yup.object().shape({
     .required('Please repeat your password.'),
 });
 
-export const RegisterPage = ({navigation}) => {
+export const RegisterPage = ({navigation}: any) => {
   // console.log('navigation', navigation.navigate);
 
   const image = {
