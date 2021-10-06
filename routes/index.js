@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
-import {RegisterPage} from '../screens/auth/RegisterPage';
-import {LoginPage} from '../screens/auth/LoginPage';
-import {HomeScreen} from '../screens/mainScreens/HomeScreen';
-import {ProfileScreen} from '../screens/mainScreens/ProfileScreen';
-import {ThreeDotsScreen} from '../screens/mainScreens/ThreeDotsScreen';
+import {RegisterPage} from '../components/auth/RegisterPage';
+import {LoginPage} from '../components/auth/LoginPage';
+import {HomeScreen} from '../components/mainScreens/HomeScreen';
+import {ProfileScreen} from '../components/mainScreens/ProfileScreen';
+import {ThreeDotsScreen} from '../components/mainScreens/ThreeDotsScreen';
 import {createStackNavigator} from '@react-navigation/stack';
-const MainStack = createStackNavigator();
 import {Provider as StoreProvider} from 'react-redux';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+
+const MainStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+
 export const useRoute = isAuth => {
   if (!isAuth) {
     return (

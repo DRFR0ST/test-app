@@ -8,8 +8,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 // import {HomeScreen} from './components/HomeScreen/HomeScreen';
 
-import {useRoute} from './android/routes';
-import {store} from './android/redux/store';
+import {useRoute} from './routes';
+import {store} from './redux/store';
 // the place for redux
 
 export const App: () => React.ReactElement = () => {
