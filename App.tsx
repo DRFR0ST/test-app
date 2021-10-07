@@ -13,7 +13,7 @@ import {store} from './redux/store';
 // the place for redux
 
 export const App: () => React.ReactElement = () => {
-  const routing = useRoute({});
+  const routing = useRoute(false);
   LogBox.ignoreLogs(['EventEmitter']); // temporary fix
 
   return (
