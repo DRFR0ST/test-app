@@ -12,30 +12,9 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import {TextInput} from 'react-native-paper';
-import * as Yup from 'yup';
 // import Icon from 'react-native-vector-icons/EvilIcons';
 import LinearGradient from 'react-native-linear-gradient';
-
-const validationSchema = Yup.object().shape({
-  fullName: Yup.string()
-    .min(3, 'Password is too short - should be 5 chars minimum.')
-    .matches(/^\s*[\S]+(\s[\S]+)+\s*$/gms, 'Please enter your full name.')
-    .required('Required'),
-  email: Yup.string()
-    .email('Must be an email address')
-    .min(8, 'Too short!')
-    .required('Required'),
-  password: Yup.string()
-    .required('No password provided.')
-    .min(5, 'Password is too short - should be 5 chars minimum.')
-    .matches(
-      /[A-Z]\w+/,
-      'Only Latin letters are allowed. At list one Uppercase is required.',
-    ),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords do not match')
-    .required('Please repeat your password.'),
-});
+import {validationSchema} from '../../component/AuthValidation';
 
 export const RegisterPage = ({navigation}: any) => {
   // console.log('navigation', navigation.navigate);
@@ -65,20 +44,20 @@ export const RegisterPage = ({navigation}: any) => {
           <Image source={image} style={styles.image} />
           <View style={[styles.form, isShowKeyboard && styles.formActive]}>
             <View style={styles.btnContainer}>
-              <TouchableOpacity
-                style={[styles.btn, styles.leftBtn]}
-                onPress={() => navigation.navigate('Login')}>
-                <Text>Login</Text>
-              </TouchableOpacity>
               <LinearGradient
-                start={{x: -1, y: -1}}
-                end={{x: 1, y: 1}}
+                start={{x: 1, y: 0}}
+                end={{x: 0, y: 0}}
                 colors={['#9796f0', '#fff']}
                 style={styles.linearGradient}>
-                <TouchableOpacity style={[styles.btn, styles.rightBtn]}>
-                  <Text style={{color: 'gray'}}>Register</Text>
+                <TouchableOpacity
+                  style={[styles.btn, styles.leftBtn]}
+                  onPress={() => navigation.navigate('Login')}>
+                  <Text style={{color: 'gray'}}>Login</Text>
                 </TouchableOpacity>
               </LinearGradient>
+              <TouchableOpacity style={[styles.btn, styles.rightBtn]}>
+                <Text>Registration</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.formikContainer}>
               <Formik
@@ -109,6 +88,7 @@ export const RegisterPage = ({navigation}: any) => {
                         outlineColor="transparent"
                         onBlur={handleBlur('fullName')}
                         onChangeText={handleChange('fullName')}
+                        underlineColor={'#9796f0'}
                       />
                       {errors.fullName && (
                         <Text
@@ -172,13 +152,14 @@ export const RegisterPage = ({navigation}: any) => {
                     <TouchableOpacity
                       style={styles.registerBtn}
                       onPress={handleSubmit}
+                      onPressOut={() => navigation.navigate('Questionnaire')}
                       disabled={!isValid}>
                       <LinearGradient
-                        start={{x: 0, y: 0}}
-                        end={{x: 1, y: 1}}
+                        start={{x: 1, y: 0}}
+                        end={{x: 0, y: 1}}
                         colors={['#9796f0', '#fff']}
                         style={styles.linearGradientBtn}>
-                        <Text style={{color: '#fff'}}>Registration</Text>
+                        <Text style={{color: '#fff'}}>Register</Text>
                       </LinearGradient>
                     </TouchableOpacity>
                   </>
@@ -194,6 +175,7 @@ export const RegisterPage = ({navigation}: any) => {
 
 const styles = StyleSheet.create({
   screen: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -212,7 +194,6 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   },
   image: {
-    marginTop: '10%',
     width: 170,
     height: 170,
     resizeMode: 'cover',
@@ -260,6 +241,9 @@ const styles = StyleSheet.create({
     width: 300,
     height: 30,
     marginTop: 15,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
   },
   linearGradient: {
     alignItems: 'center',

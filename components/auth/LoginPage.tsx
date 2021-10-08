@@ -12,23 +12,9 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import {TextInput} from 'react-native-paper';
-import * as Yup from 'yup';
 // import Icon from 'react-native-vector-icons/EvilIcons';
 import LinearGradient from 'react-native-linear-gradient';
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Must be an email address')
-    .min(8, 'Too short!')
-    .required('Required'),
-  password: Yup.string()
-    .required('No password provided.')
-    .min(5, 'Password is too short - should be 5 chars minimum.')
-    .matches(
-      /[A-Z]\w+/,
-      'Only Latin letters are allowed. At list one Uppercase is required.',
-    ),
-});
+import {validationSchema} from '../../component/AuthValidation';
 
 export const LoginPage = ({navigation}: any) => {
   const image = {
@@ -56,20 +42,20 @@ export const LoginPage = ({navigation}: any) => {
           <Image source={image} style={styles.image} />
           <View style={[styles.form, isShowKeyboard && styles.formActive]}>
             <View style={styles.btnContainer}>
+              <TouchableOpacity style={styles.btn}>
+                <Text>Login</Text>
+              </TouchableOpacity>
               <LinearGradient
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 1}}
+                start={{x: 1, y: 0}}
+                end={{x: 0, y: -1}}
                 colors={['#fff', '#9796f0']}
                 style={styles.linearGradient}>
-                <TouchableOpacity style={styles.btn}>
-                  <Text style={{color: 'gray'}}>Login</Text>
+                <TouchableOpacity
+                  style={styles.btn}
+                  onPress={() => navigation.navigate('Registration')}>
+                  <Text style={{color: 'gray'}}>Registration</Text>
                 </TouchableOpacity>
               </LinearGradient>
-              <TouchableOpacity
-                style={styles.btn}
-                onPress={() => navigation.navigate('Registration')}>
-                <Text>Register</Text>
-              </TouchableOpacity>
             </View>
             <View style={styles.formikContainer}>
               <Formik
@@ -130,8 +116,8 @@ export const LoginPage = ({navigation}: any) => {
                       onPress={handleSubmit}
                       disabled={!isValid}>
                       <LinearGradient
-                        start={{x: 1, y: 1}}
-                        end={{x: 0, y: 0}}
+                        start={{x: 0, y: 0}}
+                        end={{x: 1, y: 0}}
                         colors={['#9796f0', '#fff']}
                         style={styles.linearGradientBtn}>
                         <Text style={{color: '#fff'}}>Login</Text>
@@ -150,6 +136,7 @@ export const LoginPage = ({navigation}: any) => {
 
 const styles = StyleSheet.create({
   screen: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -168,7 +155,6 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   },
   image: {
-    marginTop: '10%',
     width: 170,
     height: 170,
     resizeMode: 'cover',
@@ -208,6 +194,9 @@ const styles = StyleSheet.create({
     width: 300,
     height: 30,
     marginTop: 15,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
   },
   linearGradient: {
     alignItems: 'center',
