@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {RegisterPage} from '../components/auth/RegisterPage';
 import {LoginPage} from '../components/auth/LoginPage';
+import {Questionnaire} from '../components/additionalScreen/Questionnaire';
 import {HomeScreen} from '../components/mainScreens/HomeScreen';
 import {ProfileScreen} from '../components/mainScreens/ProfileScreen';
 import {ThreeDotsScreen} from '../components/mainScreens/ThreeDotsScreen';
@@ -24,6 +25,11 @@ export const useRoute = isAuth => {
           options={{headerShown: false}}
           name="Login"
           component={LoginPage}
+        />
+        <MainStack.Screen
+          options={{headerShown: false}}
+          name="Questionnaire"
+          component={Questionnaire}
         />
         <MainStack.Screen
           name="HomeScreen"
