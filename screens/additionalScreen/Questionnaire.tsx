@@ -11,9 +11,9 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import {TextInput, IconButton, Colors} from 'react-native-paper';
-import {Header} from '../../component/Header';
-import {validationSchema} from '../../component/AuthValidation';
-import {CustomDatePicker} from '../../component/DatePicker';
+import {Header} from '../../components/Header';
+import {validationSchema} from '../../components/AuthValidation';
+import {CustomDatePicker} from '../../components/DatePicker';
 import LinearGradient from 'react-native-linear-gradient';
 
 export const Questionnaire = ({navigation}: any) => {

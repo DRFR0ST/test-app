@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {RegisterPage} from '../components/auth/RegisterPage';
-import {LoginPage} from '../components/auth/LoginPage';
-import {Questionnaire} from '../components/additionalScreen/Questionnaire';
-import {HomeScreen} from '../components/mainScreens/HomeScreen';
-import {ProfileScreen} from '../components/mainScreens/ProfileScreen';
-import {ThreeDotsScreen} from '../components/mainScreens/ThreeDotsScreen';
+import {RegisterPage} from '../screens/auth/RegisterPage';
+import {LoginPage} from '../screens/auth/LoginPage';
+import {Questionnaire} from '../screens/additionalScreen/Questionnaire';
+import {HomeScreen} from '../screens/mainScreens/HomeScreen';
+import {ProfileScreen} from '../screens/mainScreens/ProfileScreen';
+import {ThreeDotsScreen} from '../screens/mainScreens/ThreeDotsScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Provider as StoreProvider} from 'react-redux';
 import {createDrawerNavigator} from '@react-navigation/drawer';

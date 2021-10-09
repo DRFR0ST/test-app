@@ -14,7 +14,7 @@ import {Formik} from 'formik';
 import {TextInput} from 'react-native-paper';
 // import Icon from 'react-native-vector-icons/EvilIcons';
 import LinearGradient from 'react-native-linear-gradient';
-import {validationSchema} from '../../component/AuthValidation';
+import {validationSchema} from '../../components/AuthValidation';
 
 export const RegisterPage = ({navigation}: any) => {
   // console.log('navigation', navigation.navigate);
