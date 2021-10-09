@@ -13,6 +13,7 @@ import {Formik} from 'formik';
 import {TextInput, IconButton, Colors} from 'react-native-paper';
 import {Header} from '../../component/Header';
 import {validationSchema} from '../../component/AuthValidation';
+import {CustomDatePicker} from '../../component/DatePicker';
 import LinearGradient from 'react-native-linear-gradient';
 
 export const Questionnaire = ({navigation}: any) => {
@@ -119,6 +120,9 @@ export const Questionnaire = ({navigation}: any) => {
                           </TouchableOpacity>
                         </View>
                       </View>
+                    </View>
+                    <View>
+                      <CustomDatePicker />
                     </View>
                   </>
                 )}
