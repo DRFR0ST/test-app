@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -9,14 +9,17 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import {Formik} from 'formik';
 import {TextInput} from 'react-native-paper';
 // import Icon from 'react-native-vector-icons/EvilIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import {validationSchema} from '../../components/AuthValidation';
+import {useAppNavigation} from '../../routes/Routes';
 
-export const LoginPage = ({navigation}: any) => {
+export const LoginPage = ({}: any) => {
+  const navigation = useAppNavigation();
   const image = {
     uri: 'https://funnyness.com/sites/default/files/images/in/01-2016/1-funny-and-stylish-monkey-picture.jpg',
   };
@@ -33,6 +36,10 @@ export const LoginPage = ({navigation}: any) => {
   //   // setState(initialState);
   // };
 
+  const navigateToScreen = (screenName: string) => () => {
+    navigation.navigate(screenName);
+  };
+
   return (
     <TouchableWithoutFeedback onPress={touchedOutside}>
       <View style={styles.screen}>
@@ -42,19 +49,19 @@ export const LoginPage = ({navigation}: any) => {
           <Image source={image} style={styles.image} />
           <View style={[styles.form, isShowKeyboard && styles.formActive]}>
             <View style={styles.btnContainer}>
-              <TouchableOpacity style={styles.btn}>
+              <Pressable style={styles.btn}>
                 <Text>Login</Text>
-              </TouchableOpacity>
+              </Pressable>
               <LinearGradient
                 start={{x: 1, y: 0}}
                 end={{x: 0, y: -1}}
                 colors={['#fff', '#9796f0']}
                 style={styles.linearGradient}>
-                <TouchableOpacity
+                <Pressable
                   style={styles.btn}
-                  onPress={() => navigation.navigate('Registration')}>
+                  onPress={navigateToScreen('Registration')}>
                   <Text style={{color: 'gray'}}>Registration</Text>
-                </TouchableOpacity>
+                </Pressable>
               </LinearGradient>
             </View>
             <View style={styles.formikContainer}>

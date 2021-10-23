@@ -9,6 +9,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Provider as StoreProvider} from 'react-redux';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
+/** ! Don't mix up .js files with .ts(x) files. Keep it consistent please. */
+
 const MainStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 

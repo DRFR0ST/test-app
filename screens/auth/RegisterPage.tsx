@@ -9,15 +9,20 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import {Formik} from 'formik';
 import {TextInput} from 'react-native-paper';
-// import Icon from 'react-native-vector-icons/EvilIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import {validationSchema} from '../../components/AuthValidation';
+import {useAppNavigation} from '../../routes/Routes';
 
-export const RegisterPage = ({navigation}: any) => {
-  // console.log('navigation', navigation.navigate);
+// TODO: Solve the lots of repetition in this file and LoginPage. DRY approach is cool. (Don't Repeat Yourself)
+// TODO: Try breaking functions into smaller pieces and inside a component, only declare variables and functions when they depend on props or state.
+// TODO: Can you easily read the JSX code below? Maybe refactor this into smaller components?
+
+export const RegisterPage = ({}: any) => {
+  const navigation = useAppNavigation();
 
   const image = {
     uri: 'http://www.fillster.com/images/comments/158d.jpg',
@@ -35,6 +40,10 @@ export const RegisterPage = ({navigation}: any) => {
   //   // setState(initialState);
   // };
 
+  const navigateToScreen = (screenName: string) => () => {
+    navigation.navigate(screenName);
+  };
+
   return (
     <TouchableWithoutFeedback onPress={touchedOutside}>
       <View style={styles.screen}>
@@ -49,15 +58,15 @@ export const RegisterPage = ({navigation}: any) => {
                 end={{x: 0, y: 0}}
                 colors={['#9796f0', '#fff']}
                 style={styles.linearGradient}>
-                <TouchableOpacity
+                <Pressable
                   style={[styles.btn, styles.leftBtn]}
-                  onPress={() => navigation.navigate('Login')}>
+                  onPress={navigateToScreen('Login')}>
                   <Text style={{color: 'gray'}}>Login</Text>
-                </TouchableOpacity>
+                </Pressable>
               </LinearGradient>
-              <TouchableOpacity style={[styles.btn, styles.rightBtn]}>
+              <Pressable style={[styles.btn, styles.rightBtn]}>
                 <Text>Registration</Text>
-              </TouchableOpacity>
+              </Pressable>
             </View>
             <View style={styles.formikContainer}>
               <Formik

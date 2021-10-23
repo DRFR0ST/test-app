@@ -1,5 +1,8 @@
 {
   "cSpell.words": [
     "formik"
-  ]
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
 }
