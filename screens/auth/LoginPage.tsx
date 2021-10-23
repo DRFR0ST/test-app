@@ -13,8 +13,6 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import {TextInput} from 'react-native-paper';
-// import Icon from 'react-native-vector-icons/EvilIcons';
-import LinearGradient from 'react-native-linear-gradient';
 import {validationSchema} from '../../components/AuthValidation';
 import {useAppNavigation} from '../../routes/Routes';
 
@@ -88,7 +86,13 @@ export const LoginPage = ({}: any) => {
                         textAlign={'center'}
                         value={values.email}
                         mode="outlined"
+                        placeholder="netcasting@gmail.com"
                         outlineColor="transparent"
+                        theme={{
+                          colors: {
+                            primary: 'transparent',
+                          },
+                        }}
                         onBlur={handleBlur('email')}
                         onChangeText={handleChange('email')}
                         keyboardType="email-address"
@@ -108,7 +112,12 @@ export const LoginPage = ({}: any) => {
                         onChangeText={handleChange('password')}
                         secureTextEntry
                         outlineColor="transparent"
-                        // right={<TextInput.Icon name="eye" />}
+                        theme={{
+                          colors: {
+                            primary: 'transparent',
+                          },
+                        }}
+                        placeholder="Enter your password"
                       />
                       {errors.password && (
                         <Text
@@ -122,13 +131,7 @@ export const LoginPage = ({}: any) => {
                       style={styles.registerBtn}
                       onPress={handleSubmit}
                       disabled={!isValid}>
-                      <LinearGradient
-                        start={{x: 0, y: 0}}
-                        end={{x: 1, y: 0}}
-                        colors={['#9796f0', '#fff']}
-                        style={styles.linearGradientBtn}>
-                        <Text style={{color: '#fff'}}>Login</Text>
-                      </LinearGradient>
+                      <Text>Login</Text>
                     </TouchableOpacity>
                   </>
                 )}
@@ -186,10 +189,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 10,
-    borderColor: '#A9A9A9',
+    borderWidth: 1,
+    borderColor: '#9796f0',
     width: 250,
     marginTop: 20,
-    backgroundColor: '#BEC0C2',
+    backgroundColor: 'transparent',
     overflow: 'hidden',
   },
   formikContainer: {
@@ -204,21 +208,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: 'gray',
-  },
-  linearGradient: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
-    overflow: 'hidden',
-  },
-  linearGradientBtn: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
-    overflow: 'hidden',
-    width: '100%',
-    height: '100%',
   },
 });

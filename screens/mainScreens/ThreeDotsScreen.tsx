@@ -45,20 +45,4 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 10,
   },
-  modal: {
-    alignItems: 'center',
-    borderRadius: 20,
-  },
-  modalContent: {
-    height: 90,
-    width: 220,
-    justifyContent: 'space-between',
-  },
-  modalChoice: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  noBtn: {
-    marginLeft: 15,
-  },
 });
