@@ -13,11 +13,13 @@ export const Header = props => {
 
 const styles = StyleSheet.create({
   header: {
-    height: 28,
+    height: 48,
     borderBottomWidth: 1,
     borderBottomColor: '#b3b3b3',
     justifyContent: 'center',
     // alignItems: 'center',
+    position: 'relative',
+    // top: 0,
     paddingHorizontal: 30,
   },
 });

@@ -12,8 +12,7 @@ import {
 } from 'react-native';
 import {Formik} from 'formik';
 import {TextInput} from 'react-native-paper';
-// import Icon from 'react-native-vector-icons/EvilIcons';
-import LinearGradient from 'react-native-linear-gradient';
+// import Icon from 'react-native-vector-icons/Entypo';
 import {validationSchema} from '../../components/AuthValidation';
 
 export const RegisterPage = ({navigation}: any) => {
@@ -44,17 +43,11 @@ export const RegisterPage = ({navigation}: any) => {
           <Image source={image} style={styles.image} />
           <View style={[styles.form, isShowKeyboard && styles.formActive]}>
             <View style={styles.btnContainer}>
-              <LinearGradient
-                start={{x: 1, y: 0}}
-                end={{x: 0, y: 0}}
-                colors={['#9796f0', '#fff']}
-                style={styles.linearGradient}>
-                <TouchableOpacity
-                  style={[styles.btn, styles.leftBtn]}
-                  onPress={() => navigation.navigate('Login')}>
-                  <Text style={{color: 'gray'}}>Login</Text>
-                </TouchableOpacity>
-              </LinearGradient>
+              <TouchableOpacity
+                style={[styles.btn, styles.leftBtn]}
+                onPress={() => navigation.push('Login')}>
+                <Text style={{color: 'gray'}}>Login</Text>
+              </TouchableOpacity>
               <TouchableOpacity style={[styles.btn, styles.rightBtn]}>
                 <Text>Registration</Text>
               </TouchableOpacity>
@@ -82,10 +75,17 @@ export const RegisterPage = ({navigation}: any) => {
                       <TextInput
                         style={styles.textInput}
                         label="Name"
+                        placeholder="Alex"
                         mode="outlined"
                         textAlign={'center'}
                         value={values.fullName}
                         outlineColor="transparent"
+                        theme={{
+                          colors: {
+                            primary: 'transparent',
+                          },
+                          // borderColor:
+                        }}
                         onBlur={handleBlur('fullName')}
                         onChangeText={handleChange('fullName')}
                         underlineColor={'#9796f0'}
@@ -99,10 +99,16 @@ export const RegisterPage = ({navigation}: any) => {
                       <TextInput
                         style={styles.textInput}
                         label="Email"
+                        placeholder="netcasting@gmail.com"
                         textAlign={'center'}
                         value={values.email}
                         mode="outlined"
                         outlineColor="transparent"
+                        theme={{
+                          colors: {
+                            primary: 'transparent',
+                          },
+                        }}
                         onBlur={handleBlur('email')}
                         onChangeText={handleChange('email')}
                         keyboardType="email-address"
@@ -117,12 +123,17 @@ export const RegisterPage = ({navigation}: any) => {
                         style={styles.textInput}
                         label="Password"
                         mode="outlined"
+                        placeholder="Enter your password"
                         value={values.password}
                         onBlur={handleBlur('password')}
                         onChangeText={handleChange('password')}
                         secureTextEntry
                         outlineColor="transparent"
-                        // right={<TextInput.Icon name="eye" />}
+                        theme={{
+                          colors: {
+                            primary: 'transparent',
+                          },
+                        }}
                       />
                       {errors.password && (
                         <Text
@@ -133,13 +144,18 @@ export const RegisterPage = ({navigation}: any) => {
                       <TextInput
                         style={{...styles.textInput}}
                         label="Repeat password"
+                        placeholder="Second time pls :)"
                         mode="outlined"
                         value={values.confirmPassword}
                         onBlur={handleBlur('confirmPassword')}
                         onChangeText={handleChange('confirmPassword')}
                         secureTextEntry
                         outlineColor="transparent"
-                        // right={<Icon name="eye" backgroundColor="red" />}
+                        theme={{
+                          colors: {
+                            primary: 'transparent',
+                          },
+                        }}
                       />
                       {errors.confirmPassword && (
                         <Text
@@ -154,13 +170,7 @@ export const RegisterPage = ({navigation}: any) => {
                       onPress={handleSubmit}
                       onPressOut={() => navigation.navigate('Questionnaire')}
                       disabled={!isValid}>
-                      <LinearGradient
-                        start={{x: 1, y: 0}}
-                        end={{x: 0, y: 1}}
-                        colors={['#9796f0', '#fff']}
-                        style={styles.linearGradientBtn}>
-                        <Text style={{color: '#fff'}}>Register</Text>
-                      </LinearGradient>
+                      <Text>Register</Text>
                     </TouchableOpacity>
                   </>
                 )}
@@ -219,6 +229,8 @@ const styles = StyleSheet.create({
   },
   rightBtn: {
     borderLeftWidth: 0,
+    borderBottomWidth: 2,
+    borderBottomColor: '#9796f0',
   },
   registerBtn: {
     height: 40,
@@ -226,10 +238,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 10,
-    borderColor: '#A9A9A9',
+    borderWidth: 1,
+    borderColor: '#9796f0',
     width: 250,
     marginTop: 20,
-    backgroundColor: '#BEC0C2',
+    backgroundColor: 'transparent',
     overflow: 'hidden',
   },
   formikContainer: {
@@ -244,21 +257,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: 'gray',
-  },
-  linearGradient: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
-    overflow: 'hidden',
-  },
-  linearGradientBtn: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
-    overflow: 'hidden',
-    width: '100%',
-    height: '100%',
   },
 });

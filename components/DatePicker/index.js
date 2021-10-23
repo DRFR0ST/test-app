@@ -4,7 +4,7 @@ import DatePicker from 'react-native-datepicker';
 export class CustomDatePicker extends Component {
   constructor(props) {
     super(props);
-    this.state = {date: '2021-05-15'};
+    this.state = {date: new Date()};
   }
 
   render() {
@@ -21,13 +21,10 @@ export class CustomDatePicker extends Component {
         cancelBtnText="Cancel"
         customStyles={{
           dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0,
+            display: 'none',
           },
           dateInput: {
-            marginLeft: 36,
+            borderWidth: 0,
           },
           // ... You can check the source to find the other keys.
         }}
